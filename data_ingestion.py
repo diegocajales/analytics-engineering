@@ -12,12 +12,13 @@ from google.api_core.exceptions import NotFound, Forbidden
 BUCKET_NAME = "diego-analytics-engineering"
 
 # If you authenticated through the GCP SDK you can comment out these two lines
-client = storage.Client()
+CREDENTIALS_FILE = "ae_g.c-p.json"
+client = storage.Client.from_service_account_json(CREDENTIALS_FILE)
 # If commented initialize client with the following
 # client = storage.Client(project='zoomcamp-mod3-datawarehouse')
 
-BASE_FILE = f"yellow_tripdata"
-BASE_URL = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/yellow/{BASE_FILE}"
+BASE_FILE = f"green_tripdata"
+BASE_URL = f"https://github.com/DataTalksClub/nyc-tlc-data/releases/download/green/{BASE_FILE}"
 YEARS = [f"20{i:02d}" for i in range(19, 21)]
 MONTHS = [f"{i:02d}" for i in range(1, 13)]
 DOWNLOAD_DIR = "."
